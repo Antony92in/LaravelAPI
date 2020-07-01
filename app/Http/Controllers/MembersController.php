@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Member;
+use App\Jobs\SendMail;
 
 class MembersController extends Controller
 {	
@@ -20,7 +21,13 @@ class MembersController extends Controller
 
 		$member->email = $req->email;
 
-		$member->save();
+		if ($member->save()) {
+			SendMail::dispatch("member $req->first_name added")->delay(now()->addMinutes(1));
+		}
+
+		
+
+		
 	}
 
 	public function allMembers()
