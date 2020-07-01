@@ -32,3 +32,6 @@ Route::middleware('auth:sanctum')->post('/delete', 'MembersController@deleteMemb
 Route::middleware('auth:sanctum')->get('/memberbyemail', 'MembersController@getMemberByEmail');
 
 Route::middleware('auth:sanctum')->get('/memberbyevent', 'MembersController@getMemberByEvent');
+
+
+Route::post('/del', 'MembersController@deleteMember'); //Route for unit test
