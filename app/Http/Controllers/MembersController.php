@@ -5,12 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Member;
 use App\Jobs\SendMail;
+use Faker\Factory as Faker;
 
 class MembersController extends Controller
 {	
 
 	public function addMember(Request $req)
-	{
+	{	
+		$validatedData = $req->validate([
+			'event_id' => 'required',
+			'first_name' => 'required',
+			'second_name' => 'required',
+			'email' => 'required|unique:members',
+		]);
+
+		if (!$validatedData) {
+			return response($validatedData->errors());
+		}
 		$member = new Member;
 
 		$member->event_id = $req->event_id;
@@ -77,4 +88,6 @@ class MembersController extends Controller
 
 		return $members;
 	}
+
+
 }

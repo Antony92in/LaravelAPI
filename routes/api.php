@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::post('login', 'UserController@index');
+Route::post('login', 'UserController@login');
+
+Route::post('register', 'UserController@register');
 
 Route::middleware('auth:sanctum')->get('/allmembers', 'MembersController@allMembers'); 
 
@@ -35,3 +37,5 @@ Route::middleware('auth:sanctum')->get('/memberbyevent', 'MembersController@getM
 
 
 Route::post('/del', 'MembersController@deleteMember'); //Route for unit test
+
+Route::post('/add', 'MembersController@addMember');	//Route for unit test

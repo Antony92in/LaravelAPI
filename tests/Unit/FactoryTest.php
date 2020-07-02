@@ -16,6 +16,6 @@ class FactoryTest extends TestCase
      */
     public function testDatabase()
     {
-       $event = factory(Customevent::class, 10)->create();
+       $event = factory(Customevent::class, 5)->create();
     }
 }
